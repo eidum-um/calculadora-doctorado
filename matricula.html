@@ -47,80 +47,108 @@
   font-size: 14px;
   color: var(--txt);
   line-height: 1.5;
-  max-width: 760px;
-  width: 100%;
+  
+  /* DISEÑO ADAPTATIVO AMPLIO */
+  max-width: 1400px; /* Expansión máxima para pantallas muy grandes */
+  width: 94%; /* Deja un margen elegante a los lados en pantallas de ordenador y tablet */
+  margin: 30px auto; /* Centra el módulo en la pantalla */
   background: var(--gris);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 32, 40, 0.08); /* Sutil profundidad institucional */
 }
 
 /* ── Cabecera ───────────────────────────────────────────────── */
 .ecalc .ec-hd {
   background: var(--rojo);
   color: #fff;
-  padding: 24px 28px 20px;
+  padding: 32px 40px 28px;
   position: relative;
   overflow: hidden;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
 }
-/* Línea vertical decorativa — eco del símbolo con barras verticales */
+
+/* Líneas verticales decorativas integradas de forma fluida mediante SVG para evitar el efecto rayado */
 .ecalc .ec-hd::before {
   content: '';
-  position: absolute; right: 24px; top: 0; bottom: 0;
-  width: 1px; background: rgba(255,255,255,.18);
-  box-shadow: 8px 0 0 rgba(255,255,255,.10),
-              18px 0 0 rgba(255,255,255,.07),
-              30px 0 0 rgba(255,255,255,.05);
+  position: absolute; 
+  right: 40px; 
+  top: 0; 
+  bottom: 0;
+  width: 40px; 
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Crect x='0' y='0' width='1' height='10' fill='%23ffffff'/%3E%3Crect x='10' y='0' width='1' height='10' fill='%23ffffff'/%3E%3Crect x='22' y='0' width='1' height='10' fill='%23ffffff'/%3E%3Crect x='35' y='0' width='1' height='10' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
 }
+
 .ecalc .ec-hd .eyebrow {
   font-family: var(--f-sans);
-  font-size: 10px; font-weight: 600;
+  font-size: 11px; font-weight: 600;
   letter-spacing: .14em; text-transform: uppercase;
-  opacity: .72; margin-bottom: 6px;
+  opacity: .85; margin-bottom: 8px;
 }
 .ecalc .ec-hd h2 {
   font-family: var(--f-serif);
-  font-size: 26px; font-weight: 400;
-  line-height: 1.2; margin-bottom: 4px;
+  font-size: 32px; font-weight: 400;
+  line-height: 1.2; margin-bottom: 6px;
   letter-spacing: -.01em;
 }
 .ecalc .ec-hd p {
   font-family: var(--f-sans);
-  font-size: 12px; opacity: .72;
+  font-size: 13px; opacity: .80;
 }
 
-/* ── Cuerpo: 2 columnas ─────────────────────────────────────── */
+/* ── Cuerpo: Distribución horizontal en pantallas grandes ── */
 .ecalc .ec-body {
   background: var(--blanco);
   border: 1px solid var(--gris-b); border-top: none;
   display: grid;
-  grid-template-columns: 1fr 288px;
+  /* El formulario toma el 60% del espacio y el desglose el 40% */
+  grid-template-columns: 6fr 4fr; 
   grid-template-rows: 1fr auto;
   grid-template-areas: "form result" "btn btn";
   border-radius: 0 0 var(--r-lg) var(--r-lg);
   overflow: hidden;
 }
-@media (max-width: 620px) {
+
+/* Adaptación para pantallas de tablets medianas y móviles */
+@media (max-width: 900px) {
+  .ecalc {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+  .ecalc .ec-hd {
+    border-radius: 0;
+    padding: 24px 20px 20px;
+  }
+  .ecalc .ec-hd h2 { font-size: 24px; }
   .ecalc .ec-body {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas: "form" "result" "btn";
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
   .ecalc .ec-result { border-left: none !important; border-top: 1px solid var(--gris-b); }
   .ecalc .ec-total-box { border-radius: 0; }
-  .ecalc .ec-btn-wrap { border-radius: 0 0 var(--r-lg) var(--r-lg); }
-  .ecalc .ec-hd h2 { font-size: 22px; }
+  .ecalc .ec-btn-wrap { border-radius: 0; }
   .ecalc .ec-comp-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Formulario ─────────────────────────────────────────────── */
 .ecalc .ec-form { border-right: 1px solid var(--gris-b); min-width: 0; grid-area: form; }
 
-.ecalc .ec-block { padding: 16px 20px; border-bottom: 1px solid var(--gris); }
+.ecalc .ec-block { padding: 22px 28px; border-bottom: 1px solid var(--gris); }
+@media (max-width: 900px) { .ecalc .ec-block { padding: 16px 20px; } }
 .ecalc .ec-block:last-of-type { border-bottom: none; }
 
 .ecalc .ec-block-title {
   font-family: var(--f-serif);
-  font-size: 15px; font-weight: 400;
+  font-size: 16px; font-weight: 400;
   color: var(--azul);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--gris-b);
   display: flex; align-items: center; gap: 8px;
@@ -136,11 +164,11 @@
 }
 
 /* Controles */
-.ecalc .ec-row { margin-bottom: 10px; }
+.ecalc .ec-row { margin-bottom: 12px; }
 .ecalc .ec-row:last-child { margin-bottom: 0; }
 .ecalc label.ec-lbl {
   display: block; font-size: 11.5px; font-weight: 600;
-  color: var(--txt-s); margin-bottom: 4px;
+  color: var(--txt-s); margin-bottom: 5px;
   text-transform: uppercase; letter-spacing: .05em;
 }
 .ecalc label.ec-lbl small {
@@ -150,15 +178,15 @@
 
 .ecalc select,
 .ecalc input[type="number"] {
-  width: 100%; padding: 8px 11px;
+  width: 100%; padding: 9px 12px;
   border: 1px solid var(--gris-b); border-radius: var(--r-sm);
-  font-size: 13px; font-family: var(--f-sans);
+  font-size: 13.5px; font-family: var(--f-sans);
   color: var(--txt); background: var(--blanco);
   appearance: none; -webkit-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238A7F74' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 10px center;
-  padding-right: 28px;
+  background-position: right 12px center;
+  padding-right: 32px;
   transition: border-color .15s;
 }
 .ecalc select:focus,
@@ -166,76 +194,76 @@
   outline: none; border-color: var(--rojo);
   box-shadow: 0 0 0 2px rgba(224,59,35,.12);
 }
-.ecalc input[type="number"] { background-image: none; padding-right: 11px; }
+.ecalc input[type="number"] { background-image: none; padding-right: 12px; }
 
 /* Grid créditos */
 .ecalc .ec-comp-grid {
-  display: grid; grid-template-columns: 1fr 96px; gap: 8px; align-items: end;
+  display: grid; grid-template-columns: 1fr 110px; gap: 12px; align-items: end;
 }
 @media (max-width: 400px) { .ecalc .ec-comp-grid { grid-template-columns: 1fr; } }
 
 /* Precio/ECTS badge */
 .ecalc .ec-ects-badge {
   border: 1px solid var(--gris-b); border-radius: var(--r-sm);
-  height: 36px; display: flex; align-items: center; justify-content: flex-end;
-  padding: 0 10px;
-  font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums;
+  height: 38px; display: flex; align-items: center; justify-content: flex-end;
+  padding: 0 12px;
+  font-size: 13.5px; font-weight: 700; font-variant-numeric: tabular-nums;
   color: var(--rojo); background: var(--rojo-t);
 }
 
 /* Preview subtotal complementos */
 .ecalc .ec-comp-preview {
-  margin-top: 8px; padding: 8px 12px;
+  margin-top: 10px; padding: 10px 14px;
   background: var(--gris); border: 1px solid var(--gris-b);
   border-radius: var(--r-md);
   display: none; align-items: baseline;
   justify-content: space-between; gap: 8px;
 }
-.ecalc .ec-comp-preview .cp-lbl { font-size: 12px; color: var(--txt-s); }
+.ecalc .ec-comp-preview .cp-lbl { font-size: 12.5px; color: var(--txt-s); }
 .ecalc .ec-comp-preview .cp-val {
-  font-family: var(--f-serif); font-size: 17px;
+  font-family: var(--f-serif); font-size: 18px;
   font-weight: 600; color: var(--rojo); white-space: nowrap;
 }
 
 /* Aviso info */
 .ecalc .ec-info {
-  margin-top: 8px; padding: 8px 12px;
+  margin-top: 10px; padding: 10px 14px;
   background: var(--rojo-cl); border-left: 3px solid var(--rojo);
   border-radius: 0 var(--r-md) var(--r-md) 0;
-  font-size: 12px; color: var(--rojo-osc);
+  font-size: 12.5px; color: var(--rojo-osc);
   line-height: 1.5;
 }
 
 /* Checkboxes */
-.ecalc .ec-checks { display: flex; flex-direction: column; gap: 5px; }
+.ecalc .ec-checks { display: flex; flex-direction: column; gap: 6px; }
 .ecalc .ec-chk {
-  display: flex; align-items: flex-start; gap: 9px;
-  padding: 7px 10px;
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 12px;
   border: 1px solid var(--gris-b); border-radius: var(--r-md);
   cursor: pointer; transition: border-color .12s, background .12s;
 }
 .ecalc .ec-chk:hover { border-color: var(--rojo); background: var(--rojo-t); }
 .ecalc .ec-chk input[type="checkbox"] {
-  margin-top: 2px; accent-color: var(--rojo);
-  width: 13px; height: 13px; flex-shrink: 0; cursor: pointer;
+  margin-top: 3px; accent-color: var(--rojo);
+  width: 14px; height: 14px; flex-shrink: 0; cursor: pointer;
 }
-.ecalc .ec-chk-main { font-size: 12.5px; font-weight: 500; display: block; }
-.ecalc .ec-chk-sub  { font-size: 11px; color: var(--txt-t); display: block; margin-top: 1px; }
+.ecalc .ec-chk-main { font-size: 13px; font-weight: 500; display: block; }
+.ecalc .ec-chk-sub  { font-size: 11px; color: var(--txt-t); display: block; margin-top: 2px; }
 
 /* Sección complementos oculta por defecto */
 .ecalc #ec-sec-comp { display: none; }
 
 /* Botón */
 .ecalc .ec-btn-wrap {
-  padding: 16px 24px 22px; border-top: 2px solid var(--gris-b);
+  padding: 20px 28px 24px; border-top: 2px solid var(--gris-b);
   background: var(--gris);
   grid-area: btn;
   border-radius: 0 0 var(--r-lg) var(--r-lg);
 }
 .ecalc .ec-btn {
-  width: 100%; padding: 11px 16px;
+  width: 100%; padding: 12px 20px;
   background: var(--rojo); color: #fff;
-  font-family: var(--f-serif); font-size: 16px; font-weight: 400;
+  font-family: var(--f-serif); font-size: 17px; font-weight: 400;
   letter-spacing: .02em;
   border: none;
   cursor: pointer; transition: background .15s;
@@ -249,48 +277,47 @@
 
 .ecalc .ec-total-box {
   background: var(--azul); color: #fff;
-  padding: 20px 20px 16px; flex-shrink: 0;
-  border-radius: var(--r-lg) 0 0 0;
+  padding: 24px 24px 20px; flex-shrink: 0;
 }
 .ecalc .ec-total-box .lbl {
   font-family: var(--f-sans);
-  font-size: 10px; font-weight: 600;
+  font-size: 10.5px; font-weight: 600;
   letter-spacing: .12em; text-transform: uppercase;
-  opacity: .6; margin-bottom: 5px;
+  opacity: .6; margin-bottom: 6px;
 }
 .ecalc .ec-total-num {
   font-family: var(--f-serif);
-  font-size: 40px; font-weight: 400; line-height: 1;
+  font-size: 44px; font-weight: 400; line-height: 1;
   letter-spacing: -.02em; color: #fff;
 }
 .ecalc .ec-total-num .euro {
-  font-size: 18px; vertical-align: super; margin-right: 2px;
-  color: var(--rojo); /* el euro en rojo EIDUM sobre el azul oscuro */
+  font-size: 20px; vertical-align: super; margin-right: 3px;
+  color: var(--rojo);
 }
 .ecalc .ec-total-sub {
   font-family: var(--f-sans);
-  font-size: 11px; opacity: .55; margin-top: 5px;
+  font-size: 11.5px; opacity: .55; margin-top: 6px;
 }
 
 /* Placeholder */
 .ecalc .ec-ph {
-  flex: 1; padding: 28px 20px; text-align: center;
+  flex: 1; padding: 40px 24px; text-align: center;
   color: var(--txt-t); background: var(--blanco);
 }
 .ecalc .ec-ph .ico {
   display: block;
-  font-family: var(--f-serif); font-size: 32px;
-  color: var(--rojo); opacity: .35; margin-bottom: 10px;
+  font-family: var(--f-serif); font-size: 36px;
+  color: var(--rojo); opacity: .35; margin-bottom: 12px;
   letter-spacing: -.02em;
 }
-.ecalc .ec-ph p { font-size: 12.5px; line-height: 1.6; }
+.ecalc .ec-ph p { font-size: 13px; line-height: 1.6; }
 
 /* Desglose */
 .ecalc .ec-desglose { flex: 1; background: var(--blanco); }
 .ecalc .dsg-list { list-style: none; }
 .ecalc .dsg-list li {
   display: flex; justify-content: space-between; align-items: baseline;
-  padding: 8px 16px; font-size: 12.5px;
+  padding: 10px 20px; font-size: 13px;
   border-bottom: 1px solid var(--gris); gap: 8px;
 }
 .ecalc .dsg-list li:last-child { border-bottom: none; }
@@ -303,62 +330,62 @@
 .ecalc .dsg-list li.bonif .dl,
 .ecalc .dsg-list li.bonif .dr { color: var(--verde); }
 .ecalc .dsg-list li.av-row   { background: var(--ambar-bg); }
-.ecalc .dsg-list li.av-row .dl { font-size: 11.5px; color: var(--ambar); }
+.ecalc .dsg-list li.av-row .dl { font-size: 12px; color: var(--ambar); }
 .ecalc .dsg-list li.info-row { background: var(--rojo-cl); }
-.ecalc .dsg-list li.info-row .dl { font-size: 11.5px; color: var(--rojo-osc); line-height: 1.5; }
+.ecalc .dsg-list li.info-row .dl { font-size: 12px; color: var(--rojo-osc); line-height: 1.5; }
 .ecalc .dsg-list li.info-tot { background: var(--gris); border-top: 1px solid var(--gris-b); }
-.ecalc .dsg-list li.info-tot .dl { font-size: 11px; color: var(--txt-t); font-style: italic; line-height: 1.55; }
+.ecalc .dsg-list li.info-tot .dl { font-size: 11.5px; color: var(--txt-t); font-style: italic; line-height: 1.55; }
 .ecalc .dsg-list li.tot {
-  background: var(--azul); padding: 10px 16px;
-  border-radius: 0 0 var(--r-md) var(--r-md);
-  overflow: hidden;
+  background: var(--azul); padding: 12px 20px;
 }
 .ecalc .dsg-list li.tot .dl {
-  font-family: var(--f-serif); font-size: 14px; font-weight: 400;
+  font-family: var(--f-serif); font-size: 15px; font-weight: 400;
   color: rgba(255,255,255,.7); letter-spacing: .01em;
 }
 .ecalc .dsg-list li.tot .dr {
-  font-family: var(--f-serif); font-size: 18px; font-weight: 400;
+  font-family: var(--f-serif); font-size: 19px; font-weight: 400;
   color: #fff;
 }
 
 /* Fraccionamiento */
 .ecalc .ec-frac {
   border-top: 1px solid var(--gris-b);
-  padding: 12px 16px; background: var(--gris);
-  border-radius: 0 0 var(--r-lg) 0;
+  padding: 14px 20px; background: var(--gris);
 }
 .ecalc .ec-frac h4 {
   font-family: var(--f-sans);
-  font-size: 10px; font-weight: 600;
+  font-size: 10.5px; font-weight: 600;
   letter-spacing: .10em; text-transform: uppercase;
-  color: var(--txt-t); margin-bottom: 8px;
+  color: var(--txt-t); margin-bottom: 10px;
 }
-.ecalc .frac-pills { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; }
+.ecalc .frac-pills { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
 .ecalc .fp {
-  min-width: 54px; background: var(--blanco);
+  min-width: 58px; background: var(--blanco);
   border: 1px solid var(--gris-b); border-radius: var(--r-md);
-  padding: 5px 7px; text-align: center; flex-shrink: 0;
+  padding: 6px 8px; text-align: center; flex-shrink: 0;
 }
 .ecalc .fp-v {
   font-family: var(--f-serif);
-  font-size: 11px; font-weight: 600; color: var(--rojo);
+  font-size: 11.5px; font-weight: 600; color: var(--rojo);
   white-space: nowrap;
 }
 .ecalc .fp-m { font-size: 9px; color: var(--txt-t); text-transform: uppercase; letter-spacing: .05em; }
-.ecalc .frac-nota { font-size: 10.5px; color: var(--txt-t); margin-top: 7px; line-height: 1.5; }
+.ecalc .frac-nota { font-size: 11px; color: var(--txt-t); margin-top: 8px; line-height: 1.5; }
 
 /* Nota legal */
 .ecalc .ec-legal {
-  padding: 10px 20px 14px;
+  padding: 14px 28px 18px;
   border: 1px solid var(--gris-b); border-top: none;
   background: var(--gris);
-  font-size: 11px; color: var(--txt-t); line-height: 1.65;
+  font-size: 11.5px; color: var(--txt-t); line-height: 1.65;
   border-radius: 0 0 var(--r-lg) var(--r-lg);
 }
+@media (max-width: 900px) { .ecalc .ec-legal { padding: 12px 20px 16px; border-radius: 0; border: none; } }
 .ecalc .ec-legal a { color: var(--rojo-osc); text-decoration: none; }
 .ecalc .ec-legal a:hover { text-decoration: underline; }
 </style>
+</head>
+<body>
 
 <div class="ecalc" id="ecalc-root">
 
@@ -525,7 +552,6 @@
         </div>
       </div>
 
-
     </div><div class="ec-result">
 
       <div class="ec-total-box">
@@ -594,17 +620,15 @@
     },
 
     /* ── Servicios administrativos de secretaria (Anexo B Normas Matricula 2026/27) ── */
-    /* Nuevo ingreso: apertura + compulsa + tarjeta de identidad (bloque conjunto) */
     ADMIN_APERTURA_DETALLE: {
-      apertura:  27.50,   /* Apertura y gestion del expediente academico */
-      compulsa:  10.72,   /* Compulsa de documentos */
-      tarjeta:    7.90    /* Expedicion y duplicados de tarjeta de identidad */
-      /* TOTAL: 46.12 */
+      apertura:  27.50,
+      compulsa:  10.72,
+      tarjeta:    7.90
     },
-    ADMIN_APERTURA: 46.12,  /* total nuevo ingreso (suma de los tres anteriores) */
+    ADMIN_APERTURA: 46.12,
 
     /* Segunda y sucesivas matriculas */
-    ADMIN_GESTION:  18.00,  /* Gestion anual de expediente academico */
+    ADMIN_GESTION:  18.00,
 
     /* Examen de tesis doctoral (tasas de evaluacion) */
     ADMIN_EXAMEN_TESIS: 144.22,
@@ -613,10 +637,10 @@
     ADMIN_TITULO_DOCTOR: 215.00,
 
     /* Seguros (nunca bonificables) */
-    SEG_OBL:  6.13,   /* Seguro obligatorio complementario */
-    SEG_ESC:  1.12,   /* Seguro escolar (menores de 28 anios) */
+    SEG_OBL:  6.13,
+    SEG_ESC:  1.12,
 
-    RECARGO_EXTRAN: 0.20  /* +20% sobre complementos, no residentes no comunitarios */
+    RECARGO_EXTRAN: 0.20
   };
 
   /* Textos informativos */
@@ -637,7 +661,6 @@
       minimumFractionDigits: 2, maximumFractionDigits: 2
     }) + "\u00A0\u20AC";
   }
-  /* mul() evita que CKEditor de Liferay elimine el operador * al guardar */
   function mul(a, b) { return a * b; }
 
   /* ── Sección complementos: mostrar/ocultar + aviso ─────────── */
@@ -791,9 +814,7 @@
       li("\u2212\u00A0" + dl, -descAcad, "bonif");
     }
 
-    /* Desglose detallado de servicios administrativos */
     if (nuevo) {
-      /* Nuevo ingreso: mostrar los tres conceptos por separado */
       var apAp  = exTot ? 0 : (b50 ? P.ADMIN_APERTURA_DETALLE.apertura / 2 : P.ADMIN_APERTURA_DETALLE.apertura);
       var apCo  = exTot ? 0 : (b50 ? P.ADMIN_APERTURA_DETALLE.compulsa / 2 : P.ADMIN_APERTURA_DETALLE.compulsa);
       var apTa  = exTot ? 0 : (b50 ? P.ADMIN_APERTURA_DETALLE.tarjeta / 2  : P.ADMIN_APERTURA_DETALLE.tarjeta);
@@ -803,7 +824,6 @@
     } else {
       li(adminLabel, admin);
     }
-    /* Tasas de defensa (solo si es matricula de defensa) */
     if (tipo === "defensa") {
       var exTesis = exTot ? 0 : P.ADMIN_EXAMEN_TESIS;
       li("Examen para tesis doctoral (tasas de evaluación)", exTesis);
@@ -872,4 +892,5 @@
 
 })();
 </script>
+</body>
 </html>
