@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de matrícula · Escuela de Doctorado · UMU</title>
+<!--
+  Fuente: EB Garamond (serif display, idéntica a la del logotipo EIDUM)
+  Solo se carga el peso 400 y 600 para no penalizar rendimiento.
+  Si Liferay bloquea Google Fonts, la serif de sistema actúa de fallback.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
@@ -49,13 +54,13 @@
   line-height: 1.5;
   
   /* DISEÑO ADAPTATIVO AMPLIO */
-  max-width: 1400px; /* Expansión máxima para pantallas muy grandes */
-  width: 94%; /* Deja un margen elegante a los lados en pantallas de ordenador y tablet */
-  margin: 30px auto; /* Centra el módulo en la pantalla */
+  max-width: 1400px;
+  width: 94%;
+  margin: 30px auto;
   background: var(--gris);
   border-radius: var(--r-lg);
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 32, 40, 0.08); /* Sutil profundidad institucional */
+  box-shadow: 0 12px 40px rgba(0, 32, 40, 0.08);
 }
 
 /* ── Cabecera ───────────────────────────────────────────────── */
@@ -66,19 +71,6 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--r-lg) var(--r-lg) 0 0;
-}
-
-/* Líneas verticales decorativas integradas de forma fluida mediante SVG para evitar el efecto rayado */
-.ecalc .ec-hd::before {
-  content: '';
-  position: absolute; 
-  right: 40px; 
-  top: 0; 
-  bottom: 0;
-  width: 40px; 
-  opacity: 0.18;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Crect x='0' y='0' width='1' height='10' fill='%23ffffff'/%3E%3Crect x='10' y='0' width='1' height='10' fill='%23ffffff'/%3E%3Crect x='22' y='0' width='1' height='10' fill='%23ffffff'/%3E%3Crect x='35' y='0' width='1' height='10' fill='%23ffffff'/%3E%3C/svg%3E");
-  background-repeat: repeat-y;
 }
 
 .ecalc .ec-hd .eyebrow {
@@ -103,7 +95,6 @@
   background: var(--blanco);
   border: 1px solid var(--gris-b); border-top: none;
   display: grid;
-  /* El formulario toma el 60% del espacio y el desglose el 40% */
   grid-template-columns: 6fr 4fr; 
   grid-template-rows: 1fr auto;
   grid-template-areas: "form result" "btn btn";
@@ -387,18 +378,27 @@
 </head>
 <body>
 
+<!-- ════════════════════════════════════════════════════
+     CALCULADORA MATRÍCULA DOCTORADO · EIDUM · UMU
+     Identidad visual: Manual de Marca EIDUM, Junio 2024
+     Compatibilidad: Liferay (IIFE, IDs prefijados ec-)
+     ════════════════════════════════════════════════════ -->
 <div class="ecalc" id="ecalc-root">
 
+  <!-- Cabecera -->
   <div class="ec-hd">
     <div class="eyebrow">Escuela Internacional de Doctorado &middot; Universidad de Murcia</div>
     <h2>Calculadora de matr&iacute;cula</h2>
     <p>Curso 2026/2027 &middot; Precios seg&uacute;n Decreto n.&ordm;&nbsp;8/2024 de la CARM</p>
   </div>
 
+  <!-- Cuerpo -->
   <div class="ec-body">
 
+    <!-- ══ FORMULARIO ══ -->
     <div class="ec-form">
 
+      <!-- 1. Tipo -->
       <div class="ec-block">
         <div class="ec-block-title">Tipo de matr&iacute;cula</div>
         <div class="ec-row">
@@ -414,6 +414,7 @@
         </div>
       </div>
 
+      <!-- 2. Complementos (condicional) -->
       <div class="ec-block" id="ec-sec-comp">
         <div class="ec-block-title">Complementos formativos</div>
         <div class="ec-row">
@@ -445,6 +446,7 @@
         </div>
       </div>
 
+      <!-- 3. Situación académica -->
       <div class="ec-block">
         <div class="ec-block-title">Situaci&oacute;n acad&eacute;mica</div>
         <div class="ec-checks">
@@ -479,6 +481,7 @@
         </div>
       </div>
 
+      <!-- 4. Exenciones y bonificaciones -->
       <div class="ec-block">
         <div class="ec-block-title">Exenciones y bonificaciones</div>
 
@@ -552,7 +555,10 @@
         </div>
       </div>
 
-    </div><div class="ec-result">
+    </div><!-- /ec-form -->
+
+    <!-- ══ RESULTADO ══ -->
+    <div class="ec-result">
 
       <div class="ec-total-box">
         <div class="lbl">Estimaci&oacute;n orientativa</div>
@@ -582,23 +588,29 @@
         <p class="frac-nota">1.er plazo incluye adm. y seguros. Requiere domiciliaci&oacute;n bancaria.</p>
       </div>
 
-    </div><div class="ec-btn-wrap">
+    </div><!-- /ec-result -->
+
+    <!-- Botón debajo del resultado, spanning ambas columnas -->
+    <div class="ec-btn-wrap">
       <button class="ec-btn" id="ec-btn-calc">Calcular importe de matr&iacute;cula &rarr;</button>
     </div>
 
-  </div><div class="ec-legal">
+  </div><!-- /ec-body -->
+
+  <div class="ec-legal">
     <strong>Estimaci&oacute;n orientativa.</strong>
     El importe real de tu matr&iacute;cula lo recibir&aacute;s una vez admitido/a en el programa y al formalizar la matr&iacute;cula en la secretar&iacute;a. Precios basados en el
     <strong>Decreto n.&ordm;&nbsp;8/2024 CARM</strong> (prorrogados para 2026/2027) y las Normas de Matr&iacute;cula UMU 2026/2027.
     El seguro obligatorio (6,13&nbsp;&euro;) no es bonificable en ning&uacute;n caso.
-    La expedici&oacute;n del t&iacute;tulo de Doctor/a (215,00&nbsp;&euro;) se gestiona en tr&aacute;mite independiente.
     &middot; <a href="https://www.um.es/web/eidum/informacion-academica/normativa-procedimientos"
        target="_blank" rel="noopener">Normativa EIDUM</a>
-    &middot; <a href="https://www.um.es/web/estudios/matricula/doctorado"
+    &middot; <a href="https://automatricula.um.es/automatricula/portal.seam"
        target="_blank" rel="noopener">Matr&iacute;cula doctorado UMU</a>
   </div>
 
-</div><script>
+</div><!-- /ecalc-root -->
+
+<script>
 (function () {
   "use strict";
 
@@ -646,7 +658,7 @@
   /* Textos informativos */
   var AV = {
     tutela:       "Precio fijo de <strong>388 \u20AC</strong> por tutela acad\u00E9mica anual. Se abona cada curso hasta el dep\u00F3sito de la tesis.",
-    defensa:      "La matr\u00EDcula de <strong>defensa de tesis</strong> incluye las tasas de evaluaci\u00F3n (examen de tesis: 144,22\u00A0\u20AC), la gesti\u00F3n anual de expediente (18,00\u00A0\u20AC) y los seguros. La <strong>expedici\u00F3n del t\u00EDtulo de Doctor/a</strong> (215,00\u00A0\u20AC) se abona en tr\u00E1mite separado.",
+    defensa:      "La matr\u00EDcula de <strong>defensa de tesis</strong> incluye las tasas de evaluaci\u00F3n (examen de tesis: 144,22\u00A0\u20AC), la gesti\u00F3n anual de expediente (18,00\u00A0\u20AC) y los seguros.",
     complementos: "Los complementos formativos de doctorado tributan al <strong>precio de 1.\u00AA matr\u00EDcula de m\u00E1ster</strong> seg\u00FAn el tipo de ense\u00F1anza al que pertenecen.",
     tc:           "Matr\u00EDcula conjunta de <strong>tutela acad\u00E9mica</strong> (388\u00A0\u20AC) m\u00E1s los cr\u00E9ditos de <strong>complementos formativos</strong> al precio de m\u00E1ster correspondiente."
   };
@@ -753,7 +765,7 @@
     else if (tipo === "tc")           { acadTutela = P.TUTELA; acadComp = mul(ects, pe); }
 
     if (extran && acadComp > 0 && !exTot && !exAcad)
-      acadRec = mul(acadComp, P.RECARGO_EXTRAN);
+      addRec = mul(acadComp, P.RECARGO_EXTRAN);
 
     var acadBase = acadTutela + acadComp + acadRec;
     var acad = acadBase, descAcad = 0;
@@ -829,7 +841,7 @@
       li("Examen para tesis doctoral (tasas de evaluación)", exTesis);
     }
     li("Seguro obligatorio complementario", segObl);
-    if (segEsc > 0) li("Seguro escolar (menores de 28 años)", segEsc);
+    if (segEsc > 0) li("Seguro escolar (menores de 28 años)", segEsc);
 
     if (beca)     liMsg("\u26A0 Beca MEC: los derechos acad\u00E9micos se aplazar\u00E1n hasta la resoluci\u00F3n.", "av-row");
     if (predoc)   liMsg("\u26A0 Contrato predoctoral: el pago acad\u00E9mico es aplazable seg\u00FAn la convocatoria.", "av-row");
