@@ -4,11 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de matrícula · Escuela de Doctorado · UMU</title>
-<!--
-  Fuente: EB Garamond (serif display, idéntica a la del logotipo EIDUM)
-  Solo se carga el peso 400 y 600 para no penalizar rendimiento.
-  Si Liferay bloquea Google Fonts, la serif de sistema actúa de fallback.
--->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
@@ -272,9 +267,9 @@
 }
 .ecalc .ec-total-box .lbl {
   font-family: var(--f-sans);
-  font-size: 10.5px; font-weight: 600;
+  font-size: 14px; font-weight: 600; /* Hecho más grande (antes era 10.5px) */
   letter-spacing: .12em; text-transform: uppercase;
-  opacity: .6; margin-bottom: 6px;
+  opacity: .9; margin-bottom: 6px; /* Aumentada opacidad para mejor lectura */
 }
 .ecalc .ec-total-num {
   font-family: var(--f-serif);
@@ -378,27 +373,18 @@
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════
-     CALCULADORA MATRÍCULA DOCTORADO · EIDUM · UMU
-     Identidad visual: Manual de Marca EIDUM, Junio 2024
-     Compatibilidad: Liferay (IIFE, IDs prefijados ec-)
-     ════════════════════════════════════════════════════ -->
 <div class="ecalc" id="ecalc-root">
 
-  <!-- Cabecera -->
   <div class="ec-hd">
     <div class="eyebrow">Escuela Internacional de Doctorado &middot; Universidad de Murcia</div>
     <h2>Calculadora de matr&iacute;cula</h2>
     <p>Curso 2026/2027 &middot; Precios seg&uacute;n Decreto n.&ordm;&nbsp;8/2024 de la CARM</p>
   </div>
 
-  <!-- Cuerpo -->
   <div class="ec-body">
 
-    <!-- ══ FORMULARIO ══ -->
     <div class="ec-form">
 
-      <!-- 1. Tipo -->
       <div class="ec-block">
         <div class="ec-block-title">Tipo de matr&iacute;cula</div>
         <div class="ec-row">
@@ -406,14 +392,12 @@
           <select id="ec-tipo">
             <option value="">&mdash; Selecciona &mdash;</option>
             <option value="tutela">Tutela acad&eacute;mica (matr&iacute;cula anual ordinaria)</option>
-            <option value="defensa">Defensa de tesis doctoral</option>
             <option value="tc">Tutela acad&eacute;mica + complementos formativos</option>
           </select>
           <div class="ec-info" id="ec-av-tipo" style="display:none"></div>
         </div>
       </div>
 
-      <!-- 2. Complementos (condicional) -->
       <div class="ec-block" id="ec-sec-comp">
         <div class="ec-block-title">Complementos formativos</div>
         <div class="ec-row">
@@ -445,7 +429,6 @@
         </div>
       </div>
 
-      <!-- 3. Situación académica -->
       <div class="ec-block">
         <div class="ec-block-title">Situaci&oacute;n acad&eacute;mica</div>
         <div class="ec-checks">
@@ -470,17 +453,9 @@
               <span class="ec-chk-sub">Recargo del +20&nbsp;% sobre cr&eacute;ditos de complementos</span>
             </span>
           </label>
-          <label class="ec-chk">
-            <input type="checkbox" id="ec-cotutela">
-            <span>
-              <span class="ec-chk-main">R&eacute;gimen de cotutela internacional</span>
-              <span class="ec-chk-sub">Condiciones econ&oacute;micas seg&uacute;n convenio (se muestra precio de referencia)</span>
-            </span>
-          </label>
         </div>
       </div>
 
-      <!-- 4. Exenciones y bonificaciones -->
       <div class="ec-block">
         <div class="ec-block-title">Exenciones y bonificaciones</div>
 
@@ -554,10 +529,7 @@
         </div>
       </div>
 
-    </div><!-- /ec-form -->
-
-    <!-- ══ RESULTADO ══ -->
-    <div class="ec-result">
+    </div><div class="ec-result">
 
       <div class="ec-total-box">
         <div class="lbl">Estimaci&oacute;n orientativa</div>
@@ -587,16 +559,11 @@
         <p class="frac-nota">1.er plazo incluye adm. y seguros. Requiere domiciliaci&oacute;n bancaria.</p>
       </div>
 
-    </div><!-- /ec-result -->
-
-    <!-- Botón debajo del resultado, spanning ambas columnas -->
-    <div class="ec-btn-wrap">
+    </div><div class="ec-btn-wrap">
       <button class="ec-btn" id="ec-btn-calc">Calcular importe de matr&iacute;cula &rarr;</button>
     </div>
 
-  </div><!-- /ec-body -->
-
-  <div class="ec-legal">
+  </div><div class="ec-legal">
     <strong>Estimaci&oacute;n orientativa.</strong>
     El importe real de tu matr&iacute;cula lo recibir&aacute;s una vez admitido/a en el programa y al formalizar la matr&iacute;cula en la secretar&iacute;a. Precios basados en el
     <strong>Decreto n.&ordm;&nbsp;8/2024 CARM</strong> (prorrogados para 2026/2027) y las Normas de Matr&iacute;cula UMU 2026/2027.
@@ -607,9 +574,7 @@
        target="_blank" rel="noopener">Matr&iacute;cula doctorado UMU</a>
   </div>
 
-</div><!-- /ecalc-root -->
-
-<script>
+</div><script>
 (function () {
   "use strict";
 
@@ -641,12 +606,6 @@
     /* Segunda y sucesivas matriculas */
     ADMIN_GESTION:  18.00,
 
-    /* Examen de tesis doctoral (tasas de evaluacion) */
-    ADMIN_EXAMEN_TESIS: 144.22,
-
-    /* Expedicion del titulo de Doctor/a */
-    ADMIN_TITULO_DOCTOR: 215.00,
-
     /* Seguros (nunca bonificables) */
     SEG_OBL:  6.13,
     SEG_ESC:  1.12,
@@ -657,8 +616,6 @@
   /* Textos informativos */
   var AV = {
     tutela:       "Precio fijo de <strong>388 \u20AC</strong> por tutela acad\u00E9mica anual. Se abona cada curso hasta el dep\u00F3sito de la tesis.",
-    defensa:      "La matr\u00EDcula de <strong>defensa de tesis</strong> incluye las tasas de evaluaci\u00F3n (examen de tesis: 144,22\u00A0\u20AC), la gesti\u00F3n anual de expediente (18,00\u00A0\u20AC) y los seguros.",
-    complementos: "Los complementos formativos de doctorado tributan al <strong>precio de 1.\u00AA matr\u00EDcula de m\u00E1ster</strong> seg\u00FAn el tipo de ense\u00F1anza al que pertenecen.",
     tc:           "Matr\u00EDcula conjunta de <strong>tutela acad\u00E9mica</strong> (388\u00A0\u20AC) m\u00E1s los cr\u00E9ditos de <strong>complementos formativos</strong> al precio de m\u00E1ster correspondiente."
   };
 
@@ -680,7 +637,7 @@
     var sc = g("ec-sec-comp");
     var av = g("ec-av-tipo");
     if (!sc || !av) return;
-    sc.style.display = (v === "complementos" || v === "tc") ? "block" : "none";
+    sc.style.display = (v === "tc") ? "block" : "none";
     if (v && AV[v]) { av.innerHTML = AV[v]; av.style.display = "block"; }
     else             { av.style.display = "none"; }
     actualizarPreviewComp();
@@ -696,7 +653,7 @@
     var pvLbl = g("ec-comp-preview-label");
     var pvVal = g("ec-comp-preview-val");
 
-    if (tipo !== "complementos" && tipo !== "tc") return;
+    if (tipo !== "tc") return;
 
     var pe = expV ? (P.ECTS[expV] || 0) : 0;
 
@@ -723,7 +680,7 @@
     if (!tipo) { alert("Selecciona el tipo de matr\u00EDcula."); return; }
 
     var ects = 0, pe = 0;
-    if (tipo === "complementos" || tipo === "tc") {
+    if (tipo === "tc") {
       var expV = val("ec-exp");
       ects = parseFloat(g("ec-ects") ? g("ec-ects").value : "") || 0;
       if (!expV)     { alert("Selecciona el tipo de m\u00E1ster para los complementos."); return; }
@@ -735,7 +692,6 @@
     var nuevo    = chkd("ec-nuevo");
     var menor28  = chkd("ec-menor28");
     var extran   = chkd("ec-extran");
-    var cotutela = chkd("ec-cotutela");
 
     /* Bonificaciones */
     var discap   = val("ec-discap")  === "33";
@@ -759,12 +715,10 @@
     /* Derechos académicos */
     var acadTutela = 0, acadComp = 0, acadRec = 0;
     if      (tipo === "tutela")       { acadTutela = P.TUTELA; }
-    else if (tipo === "defensa")      { acadTutela = 0; }
-    else if (tipo === "complementos") { acadComp = mul(ects, pe); }
     else if (tipo === "tc")           { acadTutela = P.TUTELA; acadComp = mul(ects, pe); }
 
     if (extran && acadComp > 0 && !exTot && !exAcad)
-      addRec = mul(acadComp, P.RECARGO_EXTRAN);
+      acadRec = mul(acadComp, P.RECARGO_EXTRAN);
 
     var acadBase = acadTutela + acadComp + acadRec;
     var acad = acadBase, descAcad = 0;
@@ -784,8 +738,7 @@
     var segObl = P.SEG_OBL;
     var segEsc = menor28 ? P.SEG_ESC : 0;
 
-    var examenTesis = (tipo === "defensa" && !exTot) ? P.ADMIN_EXAMEN_TESIS : 0;
-    var total = acad + admin + examenTesis + segObl + segEsc;
+    var total = acad + admin + segObl + segEsc;
 
     /* ── Renderizar ── */
     var list  = g("ec-r-list");
@@ -808,7 +761,6 @@
     }
 
     if (acadTutela > 0) li("Tutela acad\u00E9mica", acadTutela);
-    if (tipo === "defensa") li("Derechos acad\u00E9micos (defensa)", 0);
     if (acadComp > 0)
       li(ects + "\u00A0ECTS \u00D7\u00A0" + fmt(pe) + " (complementos)", acadComp);
     if (acadRec > 0)
@@ -835,16 +787,11 @@
     } else {
       li(adminLabel, admin);
     }
-    if (tipo === "defensa") {
-      var exTesis = exTot ? 0 : P.ADMIN_EXAMEN_TESIS;
-      li("Examen para tesis doctoral (tasas de evaluación)", exTesis);
-    }
     li("Seguro obligatorio complementario", segObl);
     if (segEsc > 0) li("Seguro escolar (menores de 28 años)", segEsc);
 
     if (beca)     liMsg("\u26A0 Beca MEC: los derechos acad\u00E9micos se aplazar\u00E1n hasta la resoluci\u00F3n.", "av-row");
     if (predoc)   liMsg("\u26A0 Contrato predoctoral: el pago acad\u00E9mico es aplazable seg\u00FAn la convocatoria.", "av-row");
-    if (cotutela) liMsg("\u2139 Cotutela: condiciones econ\u00F3micas sujetas al convenio bilateral.", "info-row");
 
     li("Estimación total orientativa", total, "tot");
     liMsg("ℹ El importe exacto se calculará una vez admitido/a y al formalizar la matrícula en la secretaría del programa.", "info-row");
@@ -854,7 +801,7 @@
       var meses = ["Sep","Oct","Nov","Dic","Ene","Feb","Mar","Abr"];
       var p8 = acad / 8;
       for (var i = 0; i < 8; i++) {
-        var imp = (i === 0) ? (p8 + admin + examenTesis + segObl + segEsc) : p8;
+        var imp = (i === 0) ? (p8 + admin + segObl + segEsc) : p8;
         var fp = document.createElement("div");
         fp.className = "fp";
         fp.innerHTML = "<div class=\"fp-v\">" + fmt(imp) + "</div>"
@@ -872,12 +819,17 @@
     g("ec-r-num").innerHTML =
       "<span class=\"euro\">\u20AC</span>" + t2;
 
-    var tl = { tutela:"Tutela acad\u00E9mica", defensa:"Defensa de tesis",
-               complementos:"Complementos formativos", tc:"Tutela + complementos" };
+    var tl = { tutela:"Tutela acad\u00E9mica", tc:"Tutela + complementos" };
     g("ec-r-sub").textContent = (tl[tipo] || "") + " \u00B7 Curso 2026/2027";
 
     g("ec-r-ph").style.display  = "none";
     g("ec-r-dsg").style.display = "block";
+
+    /* Scroll suave hacia la parte superior de la calculadora */
+    var root = g("ecalc-root");
+    if (root) {
+      root.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   /* ── Registrar eventos (compatible con carga asíncrona Liferay) */
