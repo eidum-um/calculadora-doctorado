@@ -62,13 +62,13 @@
 .ecalc .ec-hd {
   background: var(--rojo);
   color: #fff;
-  padding: 32px 40px 28px;
+  padding: 24px 40px; /* Reducido padding vertical para compensar el tamaño del logo */
   position: relative;
   overflow: hidden;
   border-radius: var(--r-lg) var(--r-lg) 0 0;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 35px;
 }
 
 .ecalc .ec-hd-logo {
@@ -78,7 +78,7 @@
 }
 
 .ecalc .ec-hd-logo img {
-  max-height: 55px;
+  max-height: 85px; /* Aumentado sustancialmente para una correcta legibilidad */
   width: auto;
   display: block;
 }
@@ -131,7 +131,7 @@
     gap: 16px;
   }
   .ecalc .ec-hd-logo img {
-    max-height: 45px;
+    max-height: 65px;
   }
   .ecalc .ec-hd h2 { font-size: 24px; }
   .ecalc .ec-body {
