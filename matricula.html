@@ -407,7 +407,6 @@
             <option value="">&mdash; Selecciona &mdash;</option>
             <option value="tutela">Tutela acad&eacute;mica (matr&iacute;cula anual ordinaria)</option>
             <option value="defensa">Defensa de tesis doctoral</option>
-            <option value="complementos">Solo complementos formativos espec&iacute;ficos</option>
             <option value="tc">Tutela acad&eacute;mica + complementos formativos</option>
           </select>
           <div class="ec-info" id="ec-av-tipo" style="display:none"></div>
@@ -753,7 +752,7 @@
     var predoc   = val("ec-financ")  === "predoc";
 
     /* Jerarquía */
-    var exTot  = discap || fnEsp || monoEsp || terror || operac;
+    var exTot = discap || fnEsp || monoEsp || terror || operac;
     var exAcad = !exTot && (imv || vg || huerfano || beca || predoc);
     var b50    = !exTot && !exAcad && (fnGen || monoGen);
 
@@ -774,7 +773,7 @@
     else if (b50)        { descAcad = acad / 2; acad = acad / 2; }
 
     /* Derechos administrativos */
-    var adminBase  = nuevo ? P.ADMIN_APERTURA : P.ADMIN_GESTION;
+    var adminBase   = nuevo ? P.ADMIN_APERTURA : P.ADMIN_GESTION;
     var adminLabel = nuevo ? "Apertura de expediente acad\u00E9mico"
                            : "Gesti\u00F3n anual de expediente";
     var admin = adminBase;
@@ -841,7 +840,7 @@
       li("Examen para tesis doctoral (tasas de evaluación)", exTesis);
     }
     li("Seguro obligatorio complementario", segObl);
-    if (segEsc > 0) li("Seguro escolar (menores de 28 años)", segEsc);
+    if (segEsc > 0) li("Seguro escolar (menores de 28 años)", segEsc);
 
     if (beca)     liMsg("\u26A0 Beca MEC: los derechos acad\u00E9micos se aplazar\u00E1n hasta la resoluci\u00F3n.", "av-row");
     if (predoc)   liMsg("\u26A0 Contrato predoctoral: el pago acad\u00E9mico es aplazable seg\u00FAn la convocatoria.", "av-row");
