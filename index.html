@@ -450,7 +450,7 @@
             <input type="checkbox" id="ec-extran">
             <span>
               <span class="ec-chk-main">Extranjero/a no comunitario/a no residente</span>
-              <span class="ec-chk-sub">Recargo del +20&nbsp;% sobre cr&eacute;ditos de complementos</span>
+              <span class="ec-chk-sub">Recargo del +20&nbsp;% sobre cr&eacute;ditos de complementos, en su caso</span>
             </span>
           </label>
         </div>
@@ -794,7 +794,7 @@
     if (predoc)   liMsg("\u26A0 Contrato predoctoral: el pago acad\u00E9mico es aplazable seg\u00FAn la convocatoria.", "av-row");
 
     li("Estimación total orientativa", total, "tot");
-    liMsg("ℹ El importe exacto se calculará una vez admitido/a y al formalizar la matrícula en la secretaría del programa.", "info-row");
+    liMsg("ℹ El importe exacto se calculará una vez admitido/a y se oficialice la matrícula en el portal de Automatrícula.", "info-row");
 
     /* Fraccionamiento */
     if (acad > 0 && !beca && !predoc) {
