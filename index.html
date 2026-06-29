@@ -66,6 +66,25 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--r-lg) var(--r-lg) 0 0;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.ecalc .ec-hd-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.ecalc .ec-hd-logo img {
+  max-height: 55px;
+  width: auto;
+  display: block;
+}
+
+.ecalc .ec-hd-content {
+  flex: 1;
 }
 
 .ecalc .ec-hd .eyebrow {
@@ -107,6 +126,12 @@
   .ecalc .ec-hd {
     border-radius: 0;
     padding: 24px 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .ecalc .ec-hd-logo img {
+    max-height: 45px;
   }
   .ecalc .ec-hd h2 { font-size: 24px; }
   .ecalc .ec-body {
@@ -267,9 +292,9 @@
 }
 .ecalc .ec-total-box .lbl {
   font-family: var(--f-sans);
-  font-size: 14px; font-weight: 600; /* Hecho más grande (antes era 10.5px) */
+  font-size: 14px; font-weight: 600;
   letter-spacing: .12em; text-transform: uppercase;
-  opacity: .9; margin-bottom: 6px; /* Aumentada opacidad para mejor lectura */
+  opacity: .9; margin-bottom: 6px;
 }
 .ecalc .ec-total-num {
   font-family: var(--f-serif);
@@ -289,12 +314,6 @@
 .ecalc .ec-ph {
   flex: 1; padding: 40px 24px; text-align: center;
   color: var(--txt-t); background: var(--blanco);
-}
-.ecalc .ec-ph .ico {
-  display: block;
-  font-family: var(--f-serif); font-size: 36px;
-  color: var(--rojo); opacity: .35; margin-bottom: 12px;
-  letter-spacing: -.02em;
 }
 .ecalc .ec-ph p { font-size: 13px; line-height: 1.6; }
 
@@ -376,9 +395,14 @@
 <div class="ecalc" id="ecalc-root">
 
   <div class="ec-hd">
-    <div class="eyebrow">Escuela Internacional de Doctorado &middot; Universidad de Murcia</div>
-    <h2>Calculadora de matr&iacute;cula</h2>
-    <p>Curso 2026/2027 &middot; Precios seg&uacute;n Decreto n.&ordm;&nbsp;8/2024 de la CARM</p>
+    <div class="ec-hd-logo">
+      <img src="Doctorado-RGB-Logosim_H-BLTR.png" alt="Logo Escuela de Doctorado">
+    </div>
+    <div class="ec-hd-content">
+      <div class="eyebrow">Escuela Internacional de Doctorado &middot; Universidad de Murcia</div>
+      <h2>Calculadora de matr&iacute;cula</h2>
+      <p>Curso 2026/2027 &middot; Precios seg&uacute;n Decreto n.&ordm;&nbsp;8/2024 de la CARM</p>
+    </div>
   </div>
 
   <div class="ec-body">
@@ -540,7 +564,6 @@
       </div>
 
       <div class="ec-ph" id="ec-r-ph">
-        <span class="ico">Escuela<br>de Doctorado</span>
         <p>Completa el formulario<br>y pulsa <strong>Calcular</strong></p>
         <p style="font-size:11px;margin-top:10px;line-height:1.6;color:var(--txt-t)">
           El resultado es una <strong>estimaci&oacute;n orientativa</strong>.<br>
